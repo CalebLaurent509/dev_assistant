@@ -74,20 +74,27 @@ Access the web interface: [http://localhost:8000/chat](http://localhost:8000/cha
 
 ## Workflow Diagram
 
-```mermaid
-flowchart TD
-    A[User] -->|Chat message| B[FastAPI Backend]
-    B --> C[LangChain Workflow]
-    C --> D{Intent Routing}
-    D -->|Design/Plan| E[Design & Plan Agent]
-    D -->|Natural Response| F[Natural Response Agent]
-    E --> G[HTML Code Generator Agent]
-    G --> H[Write to page.html]
-    H --> I[Live Preview (iframe)]
-    F --> J[Return message]
-    B --> K[Serve /chat & /page]
-    I --> L[User sees updated page]
-    J --> M[User sees assistant reply]
+```
+User
+ │
+ │ Chat message
+ ▼
+FastAPI Backend
+ │
+ ▼
+LangChain Workflow
+ │
+ ├─> Intent Routing
+ │     ├─> Design & Plan Agent
+ │     │     └─> HTML Code Generator Agent
+ │     │           └─> Write to page.html
+ │     │                 └─> Live Preview (iframe)
+ │     └─> Natural Response Agent
+ │
+ └─> Serve /chat & /page
+ │
+ ├─> User sees updated page
+ └─> User sees assistant reply
 ```
 
 ## API
