@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- Main HTML document for the Dev Assistance chat interface -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Assistance</title>
+    <!-- Main stylesheet for chat UI -->
+    <link rel="stylesheet" href="./style.css">
+    <!-- Stylesheet for live preview features -->
+    <link rel="stylesheet" href="./live-preview.css">
+    <!-- Main JavaScript for chat logic -->
+    <script src="./script.js" defer></script>
+    <!-- PrismJS for syntax highlighting -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-html.min.js"></script>
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <!-- Chat section for user interaction -->
+    <div class="chat-section">
+        <!-- Chat header -->
+        <div class="chat-header">
+            <h1>Dev Assistance</h1>
+        </div>
+        <!-- Message history area -->
+        <div class="message-history">
+            <!-- Initial AI message -->
+            <div class="message ai-message">Hi! I'm Dev Assistance. How can I help you today?</div>
+            <!-- Loading spinner for async operations -->
+            <div class="loading-spinner"></div>
+        </div>
+        <!-- Input area for user messages -->
+        <div class="input-area">
+            <input type="text" placeholder="Type your message..." id="messageInput">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    <!-- Section for displaying the generated HTML in an iframe -->
+    <div class="iframe-section">
+        <p>Canvas Viewer</p>
+        <iframe id="myIframe" src="http://localhost:8000/page" title="Content Frame"></iframe>
+    </div>
+</body>
+</html>

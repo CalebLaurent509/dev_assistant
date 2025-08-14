@@ -1,0 +1,7 @@
+{
+    "dependencies": ["."],
+    "graphs": {
+      "chat": "core/nodes.py:build_workflow"
+    }
+  }
+  
