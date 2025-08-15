@@ -5,7 +5,7 @@ from langchain_community.chat_models import ChatOpenAI
 
 def get_llm(
     model_name="gpt-3.5-turbo",
-    temperature=0,
+    temperature=1.0,
     api_key=None,
     max_tokens=None,
     timeout=None

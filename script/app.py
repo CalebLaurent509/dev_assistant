@@ -28,6 +28,7 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="templates"), name="static")
 # Add CORS middleware to allow streaming from any origin
 app.add_middleware(
     CORSMiddleware,
