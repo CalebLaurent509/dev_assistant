@@ -24,10 +24,10 @@ class BaseAgent(ABC):
         self.name = name
         self.description = description
         self.llm = get_llm(
-            model_name="gpt-4o",
+            model_name="gpt-3.5-turbo",
             temperature=1.0,
             api_key=api_key,
-            max_tokens=6048,
+            max_tokens=4024,
             timeout=60
         )
 

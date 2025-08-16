@@ -12,7 +12,8 @@ from langchain.schema import HumanMessage
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from utils.html_extractor import extract_html_only
-from fastapi.responses import HTMLResponse, StreamingResponse
+from fastapi.responses import HTMLResponse, StreamingResponse, JSONResponse
+
 
 # Configure logging
 logging.basicConfig(
@@ -47,6 +48,18 @@ class ChatMessage(BaseModel):
 @app.get("/", response_class=HTMLResponse)
 async def root():
     pass
+
+page_to_clear = "templates/generated/page.html"
+@app.get("/clear-page")
+async def clear_page():
+    try:
+        with open(page_to_clear, "w", encoding="utf-8") as f:
+            f.write("")  # Clear the content of the page
+        logger.info(f"==> [INFO]: Cleared content of {page_to_clear}")
+        return JSONResponse(content={"status": "success", "message": "Page cleared"})
+    except Exception as e:
+        return JSONResponse(content={"status": "error", "message": str(e)}, status_code=500)
+
 
 @app.post("/chat-message")
 async def chat_message(chat_message: ChatMessage):

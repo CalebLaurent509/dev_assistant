@@ -206,7 +206,7 @@ async function sendMessage() {
                                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                                             </svg>
-                                            ${formatNodeName(currentNode)} is responding...
+                                            ${formatNodeName(currentNode)} is Responding...
                                         `;
                                     }
                                     
@@ -254,7 +254,7 @@ async function sendMessage() {
                             } else {
                                 nodeContent.textContent = newFullContent;
                             }
-                            
+                    
                             // If this is respond_naturally, update the main response content
                             let naturalResponseBuffer = '';
                             if (data.node === 'respond_naturally') {
@@ -271,18 +271,19 @@ async function sendMessage() {
                             // Check if this is a write_html_code node
                             if (data.node === 'write_html_code') {
                                 const { intro, html, outro } = extractHtmlSections(data.value);
+                                console.log('HTML content received:', html);
+                                console.log('Intro:', intro);
+                                console.log('Outro:', outro);
                                 // If we don't already have a code display, create one
                                 let codeDisplay = responseContent.querySelector('pre.code-display');
                                 if (!codeDisplay) {
                                     // Create formatted code display
-                                    if (responseContent.querySelector('.typing-indicator')) {
-                                        responseContent.innerHTML = '';
-                                    }
                                     responseContent.innerHTML += `
                                         <div class="code-display-description" style="margin-bottom: 2.5px;"></div>
                                         <pre class="code-display" style="border-radius: 4px; padding: 12px; margin-top: 8px; max-height: 500px; font-family: monospace; font-size: 0.85rem; white-space: pre-wrap; counter-reset: line; border: 1px solid rgba(255, 255, 255, 0.1);"><code class="language-html"></code></pre>
                                     `;
                                     codeDisplay = responseContent.querySelector('pre.code-display');
+                                    codeDisplay.style.display = 'none'; // Hide description initially
                                 }
                                 let codeDesc = responseContent.querySelector('.code-display-description');
                                 if (intro) {
@@ -291,6 +292,11 @@ async function sendMessage() {
                                 }
                                 // Get the code element
                                 const codeElement = codeDisplay.querySelector('code');
+                                // Show the code display
+                                if (data.value.includes('</html>')) {
+                                    codeDisplay.style.display = 'block';
+                                    responseContent.querySelector('.typing-indicator').remove();
+                                }
                                 codeElement.textContent += html;
                                 if (window.Prism) {
                                     Prism.highlightElement(codeElement);
@@ -322,7 +328,7 @@ async function sendMessage() {
                                         <polyline points="16 18 22 12 16 6"></polyline>
                                         <polyline points="8 6 2 12 8 18"></polyline>
                                     </svg>
-                                    Writing HTML code...
+                                    Writing Code...
                                 `;
                             }
                             
@@ -337,7 +343,7 @@ async function sendMessage() {
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="20 6 9 17 4 12"></polyline>
                                 </svg>
-                                Complete
+                                Task Completed!
                             `;
                             
                             // Display the final message content
