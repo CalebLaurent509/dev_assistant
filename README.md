@@ -2,6 +2,7 @@
 # Dev Assistance
 ![GitHub Stars](https://img.shields.io/github/stars/CalebLaurent509/dev_assistant?style=social)
 ![GitHub Forks](https://img.shields.io/github/forks/CalebLaurent509/dev_assistant?style=social)
+![Visitor Count](https://visitor-badge.laobi.icu/badge?page_id=CalebLaurent509.dev_assistant)
 
 
 Dev Assistance is a web application based on FastAPI and LangChain, designed to help developers generate, plan, and modify HTML pages through an intelligent chat interface.
