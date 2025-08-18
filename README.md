@@ -121,6 +121,13 @@ LangChain Workflow
 
 This project is licensed under the MIT License.
 
+
+![GitHub Repo stars](https://img.shields.io/github/stars/CalebLaurent509/dev_assistant
+?style=social)
+![GitHub forks](https://img.shields.io/github/forks/CalebLaurent509/dev_assistant
+?style=social)
+
+
 ## Contact
 
 GitHub: [CalebLaurent509](https://github.com/CalebLaurent509)
